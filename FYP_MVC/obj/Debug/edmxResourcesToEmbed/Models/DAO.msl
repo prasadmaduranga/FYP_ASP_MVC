@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FYPModelStoreContainer" CdmEntityContainer="FYPEntities">
+    <EntitySetMapping Name="charts">
+      <EntityTypeMapping TypeName="FYPModel.chart">
+        <MappingFragment StoreEntitySet="chart">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chartDimensions">
+      <EntityTypeMapping TypeName="FYPModel.chartDimension">
+        <MappingFragment StoreEntitySet="chartDimension">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="cahrtID" ColumnName="cahrtID" />
+          <ScalarProperty Name="dimensionIndex" ColumnName="dimensionIndex" />
+          <ScalarProperty Name="isContinuous" ColumnName="isContinuous" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chartDimensionCardinalities">
+      <EntityTypeMapping TypeName="FYPModel.chartDimensionCardinality">
+        <MappingFragment StoreEntitySet="chartDimensionCardinality">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="dimensionID" ColumnName="dimensionID" />
+          <ScalarProperty Name="cardinality" ColumnName="cardinality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="columns">
+      <EntityTypeMapping TypeName="FYPModel.column">
+        <MappingFragment StoreEntitySet="column">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="tableID" ColumnName="tableID" />
+          <ScalarProperty Name="header" ColumnName="header" />
+          <ScalarProperty Name="cardinality" ColumnName="cardinality" />
+          <ScalarProperty Name="dataType" ColumnName="dataType" />
+          <ScalarProperty Name="context" ColumnName="context" />
+          <ScalarProperty Name="isContinuous" ColumnName="isContinuous" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dimensionContexts">
+      <EntityTypeMapping TypeName="FYPModel.dimensionContext">
+        <MappingFragment StoreEntitySet="dimensionContext">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="dimensionID" ColumnName="dimensionID" />
+          <ScalarProperty Name="context" ColumnName="context" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dimensionCounts">
+      <EntityTypeMapping TypeName="FYPModel.dimensionCount">
+        <MappingFragment StoreEntitySet="dimensionCount">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="cahrtID" ColumnName="cahrtID" />
+          <ScalarProperty Name="count" ColumnName="count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="intentions">
+      <EntityTypeMapping TypeName="FYPModel.intention">
+        <MappingFragment StoreEntitySet="intention">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="cahrtID" ColumnName="cahrtID" />
+          <ScalarProperty Name="intention1" ColumnName="intention" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="originalDataFiles">
+      <EntityTypeMapping TypeName="FYPModel.originalDataFile">
+        <MappingFragment StoreEntitySet="originalDataFile">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="fileLocation" ColumnName="fileLocation" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tables">
+      <EntityTypeMapping TypeName="FYPModel.table">
+        <MappingFragment StoreEntitySet="table">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="fileID" ColumnName="fileID" />
+          <ScalarProperty Name="numOfRows" ColumnName="numOfRows" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tableDimensions">
+      <EntityTypeMapping TypeName="FYPModel.tableDimension">
+        <MappingFragment StoreEntitySet="tableDimension">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="tableID" ColumnName="tableID" />
+          <ScalarProperty Name="dimensionIndex" ColumnName="dimensionIndex" />
+          <ScalarProperty Name="cardinality" ColumnName="cardinality" />
+          <ScalarProperty Name="context" ColumnName="context" />
+          <ScalarProperty Name="isContinuous" ColumnName="isContinuous" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="FYPModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="passwword" ColumnName="passwword" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="visualizedDataFiles">
+      <EntityTypeMapping TypeName="FYPModel.visualizedDataFile">
+        <MappingFragment StoreEntitySet="visualizedDataFile">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="parentFileID" ColumnName="parentFileID" />
+          <ScalarProperty Name="fileLocation" ColumnName="fileLocation" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="feedBacks">
+      <EntityTypeMapping TypeName="FYPModel.feedBack">
+        <MappingFragment StoreEntitySet="feedBack">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="chartID" ColumnName="chartID" />
+          <ScalarProperty Name="tableID" ColumnName="tableID" />
+          <ScalarProperty Name="numOfDim" ColumnName="numOfDim" />
+          <ScalarProperty Name="intention" ColumnName="intention" />
+          <ScalarProperty Name="dim1_IsContinuous" ColumnName="dim1_IsContinuous" />
+          <ScalarProperty Name="dim1_Cardinality" ColumnName="dim1_Cardinality" />
+          <ScalarProperty Name="dim1_context" ColumnName="dim1_context" />
+          <ScalarProperty Name="dim2_IsContinuous" ColumnName="dim2_IsContinuous" />
+          <ScalarProperty Name="dim2_Cardinality" ColumnName="dim2_Cardinality" />
+          <ScalarProperty Name="dim2_context" ColumnName="dim2_context" />
+          <ScalarProperty Name="dim3_IsContinuous" ColumnName="dim3_IsContinuous" />
+          <ScalarProperty Name="dim3_Cardinality" ColumnName="dim3_Cardinality" />
+          <ScalarProperty Name="dim3_context" ColumnName="dim3_context" />
+          <ScalarProperty Name="dim4_IsContinuous" ColumnName="dim4_IsContinuous" />
+          <ScalarProperty Name="dim4_Cardinality" ColumnName="dim4_Cardinality" />
+          <ScalarProperty Name="dim4_context" ColumnName="dim4_context" />
+          <ScalarProperty Name="dim5_IsContinuous" ColumnName="dim5_IsContinuous" />
+          <ScalarProperty Name="dim5_Cardinality" ColumnName="dim5_Cardinality" />
+          <ScalarProperty Name="dim5_context" ColumnName="dim5_context" />
+          <ScalarProperty Name="recommendation" ColumnName="recommendation" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userFeedBacks">
+      <EntityTypeMapping TypeName="FYPModel.userFeedBack">
+        <MappingFragment StoreEntitySet="userFeedBack">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="numOfDim" ColumnName="numOfDim" />
+          <ScalarProperty Name="intention" ColumnName="intention" />
+          <ScalarProperty Name="dim1_IsContinuous" ColumnName="dim1_IsContinuous" />
+          <ScalarProperty Name="dim1_Cardinality" ColumnName="dim1_Cardinality" />
+          <ScalarProperty Name="dim1_context" ColumnName="dim1_context" />
+          <ScalarProperty Name="dim2_IsContinuous" ColumnName="dim2_IsContinuous" />
+          <ScalarProperty Name="dim2_Cardinality" ColumnName="dim2_Cardinality" />
+          <ScalarProperty Name="dim2_context" ColumnName="dim2_context" />
+          <ScalarProperty Name="dim3_IsContinuous" ColumnName="dim3_IsContinuous" />
+          <ScalarProperty Name="dim3_Cardinality" ColumnName="dim3_Cardinality" />
+          <ScalarProperty Name="dim3_context" ColumnName="dim3_context" />
+          <ScalarProperty Name="dim4_IsContinuous" ColumnName="dim4_IsContinuous" />
+          <ScalarProperty Name="dim4_Cardinality" ColumnName="dim4_Cardinality" />
+          <ScalarProperty Name="dim4_context" ColumnName="dim4_context" />
+          <ScalarProperty Name="dim5_IsContinuous" ColumnName="dim5_IsContinuous" />
+          <ScalarProperty Name="dim5_Cardinality" ColumnName="dim5_Cardinality" />
+          <ScalarProperty Name="dim5_context" ColumnName="dim5_context" />
+          <ScalarProperty Name="recommendation" ColumnName="recommendation" />
+          <ScalarProperty Name="score" ColumnName="score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="calculateCosineScore" FunctionName="FYPModel.Store.calculateCosineScore" />
+    <FunctionImportMapping FunctionImportName="calculateCosineScore2" FunctionName="FYPModel.Store.calculateCosineScore2" />
+    <FunctionImportMapping FunctionImportName="calculateScoreOfPermutumVersion2" FunctionName="FYPModel.Store.calculateScoreOfPermutumVersion2" />
+    <FunctionImportMapping FunctionImportName="readResults" FunctionName="FYPModel.Store.readResults">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="FYPModel.readResults_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="intention" ColumnName="intention" />
+          <ScalarProperty Name="dim1_IsContinuous" ColumnName="dim1_IsContinuous" />
+          <ScalarProperty Name="dim1_Cardinality" ColumnName="dim1_Cardinality" />
+          <ScalarProperty Name="dim1_context" ColumnName="dim1_context" />
+          <ScalarProperty Name="dim2_IsContinuous" ColumnName="dim2_IsContinuous" />
+          <ScalarProperty Name="dim2_Cardinality" ColumnName="dim2_Cardinality" />
+          <ScalarProperty Name="dim2_context" ColumnName="dim2_context" />
+          <ScalarProperty Name="dim3_IsContinuous" ColumnName="dim3_IsContinuous" />
+          <ScalarProperty Name="dim3_Cardinality" ColumnName="dim3_Cardinality" />
+          <ScalarProperty Name="dim3_context" ColumnName="dim3_context" />
+          <ScalarProperty Name="recommendation" ColumnName="recommendation" />
+          <ScalarProperty Name="score" ColumnName="score" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

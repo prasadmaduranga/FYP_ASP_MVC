@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FYPModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="chart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="chartDimensions" Relationship="Self.FK__chartDime__cahrt__5441852A" FromRole="chart" ToRole="chartDimension" />
+    <NavigationProperty Name="dimensionCounts" Relationship="Self.FK__dimension__cahrt__4F7CD00D" FromRole="chart" ToRole="dimensionCount" />
+    <NavigationProperty Name="feedBacks" Relationship="Self.FK__feedBack__chartI__5FB337D6" FromRole="chart" ToRole="feedBack" />
+    <NavigationProperty Name="intentions" Relationship="Self.FK__intention__cahrt__4AB81AF0" FromRole="chart" ToRole="intention" />
+  </EntityType>
+  <EntityType Name="chartDimension">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cahrtID" Type="Int32" />
+    <Property Name="dimensionIndex" Type="Int32" />
+    <Property Name="isContinuous" Type="Int32" />
+    <NavigationProperty Name="chart" Relationship="Self.FK__chartDime__cahrt__5441852A" FromRole="chartDimension" ToRole="chart" />
+    <NavigationProperty Name="chartDimensionCardinalities" Relationship="Self.FK__chartDime__dimen__59063A47" FromRole="chartDimension" ToRole="chartDimensionCardinality" />
+    <NavigationProperty Name="dimensionContexts" Relationship="Self.FK__dimension__dimen__5DCAEF64" FromRole="chartDimension" ToRole="dimensionContext" />
+  </EntityType>
+  <EntityType Name="chartDimensionCardinality">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dimensionID" Type="Int32" />
+    <Property Name="cardinality" Type="Int32" />
+    <NavigationProperty Name="chartDimension" Relationship="Self.FK__chartDime__dimen__59063A47" FromRole="chartDimensionCardinality" ToRole="chartDimension" />
+  </EntityType>
+  <EntityType Name="column">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tableID" Type="Int32" />
+    <Property Name="header" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="cardinality" Type="Int32" />
+    <Property Name="dataType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="isContinuous" Type="Int32" />
+    <NavigationProperty Name="table" Relationship="Self.FK__column__tableID__3D5E1FD2" FromRole="column" ToRole="table" />
+  </EntityType>
+  <EntityType Name="dimensionContext">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dimensionID" Type="Int32" />
+    <Property Name="context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="chartDimension" Relationship="Self.FK__dimension__dimen__5DCAEF64" FromRole="dimensionContext" ToRole="chartDimension" />
+  </EntityType>
+  <EntityType Name="dimensionCount">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cahrtID" Type="Int32" />
+    <Property Name="count" Type="Int32" />
+    <NavigationProperty Name="chart" Relationship="Self.FK__dimension__cahrt__4F7CD00D" FromRole="dimensionCount" ToRole="chart" />
+  </EntityType>
+  <EntityType Name="intention">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cahrtID" Type="Int32" />
+    <Property Name="intention1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="chart" Relationship="Self.FK__intention__cahrt__4AB81AF0" FromRole="intention" ToRole="chart" />
+  </EntityType>
+  <EntityType Name="originalDataFile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" />
+    <Property Name="fileLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="user" Relationship="Self.FK__originalD__userI__2F10007B" FromRole="originalDataFile" ToRole="user" />
+    <NavigationProperty Name="visualizedDataFiles" Relationship="Self.FK__visualize__paren__33D4B598" FromRole="originalDataFile" ToRole="visualizedDataFile" />
+  </EntityType>
+  <EntityType Name="table">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fileID" Type="Int32" />
+    <Property Name="numOfRows" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="columns" Relationship="Self.FK__column__tableID__3D5E1FD2" FromRole="table" ToRole="column" />
+    <NavigationProperty Name="feedBacks" Relationship="Self.FK__feedBack__tableI__60A75C0F" FromRole="table" ToRole="feedBack" />
+    <NavigationProperty Name="visualizedDataFile" Relationship="Self.FK__table__fileID__38996AB5" FromRole="table" ToRole="visualizedDataFile" />
+    <NavigationProperty Name="tableDimensions" Relationship="Self.FK__tableDime__table__4222D4EF" FromRole="table" ToRole="tableDimension" />
+  </EntityType>
+  <EntityType Name="tableDimension">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tableID" Type="Int32" />
+    <Property Name="dimensionIndex" Type="Int32" />
+    <Property Name="cardinality" Type="Int32" />
+    <Property Name="context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="isContinuous" Type="Int32" />
+    <NavigationProperty Name="table" Relationship="Self.FK__tableDime__table__4222D4EF" FromRole="tableDimension" ToRole="table" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="passwword" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="originalDataFiles" Relationship="Self.FK__originalD__userI__2F10007B" FromRole="user" ToRole="originalDataFile" />
+  </EntityType>
+  <EntityType Name="visualizedDataFile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="parentFileID" Type="Int32" />
+    <Property Name="fileLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="originalDataFile" Relationship="Self.FK__visualize__paren__33D4B598" FromRole="visualizedDataFile" ToRole="originalDataFile" />
+    <NavigationProperty Name="tables" Relationship="Self.FK__table__fileID__38996AB5" FromRole="visualizedDataFile" ToRole="table" />
+  </EntityType>
+  <EntityType Name="feedBack">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="chartID" Type="Int32" />
+    <Property Name="tableID" Type="Int32" />
+    <Property Name="numOfDim" Type="Int32" />
+    <Property Name="intention" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim1_IsContinuous" Type="Int32" />
+    <Property Name="dim1_Cardinality" Type="Int32" />
+    <Property Name="dim1_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim2_IsContinuous" Type="Int32" />
+    <Property Name="dim2_Cardinality" Type="Int32" />
+    <Property Name="dim2_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim3_IsContinuous" Type="Int32" />
+    <Property Name="dim3_Cardinality" Type="Int32" />
+    <Property Name="dim3_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim4_IsContinuous" Type="Int32" />
+    <Property Name="dim4_Cardinality" Type="Int32" />
+    <Property Name="dim4_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim5_IsContinuous" Type="Int32" />
+    <Property Name="dim5_Cardinality" Type="Int32" />
+    <Property Name="dim5_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="recommendation" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="rating" Type="Int32" />
+    <NavigationProperty Name="chart" Relationship="Self.FK__feedBack__chartI__5FB337D6" FromRole="feedBack" ToRole="chart" />
+    <NavigationProperty Name="table" Relationship="Self.FK__feedBack__tableI__60A75C0F" FromRole="feedBack" ToRole="table" />
+  </EntityType>
+  <EntityType Name="userFeedBack">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="numOfDim" Type="Int32" />
+    <Property Name="intention" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim1_IsContinuous" Type="Int32" />
+    <Property Name="dim1_Cardinality" Type="Int32" />
+    <Property Name="dim1_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim2_IsContinuous" Type="Int32" />
+    <Property Name="dim2_Cardinality" Type="Int32" />
+    <Property Name="dim2_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim3_IsContinuous" Type="Int32" />
+    <Property Name="dim3_Cardinality" Type="Int32" />
+    <Property Name="dim3_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim4_IsContinuous" Type="Int32" />
+    <Property Name="dim4_Cardinality" Type="Int32" />
+    <Property Name="dim4_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim5_IsContinuous" Type="Int32" />
+    <Property Name="dim5_Cardinality" Type="Int32" />
+    <Property Name="dim5_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="recommendation" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="score" Type="Double" />
+  </EntityType>
+  <Association Name="FK__chartDime__cahrt__5441852A">
+    <End Role="chart" Type="Self.chart" Multiplicity="0..1" />
+    <End Role="chartDimension" Type="Self.chartDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="chartDimension">
+        <PropertyRef Name="cahrtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__dimension__cahrt__4F7CD00D">
+    <End Role="chart" Type="Self.chart" Multiplicity="0..1" />
+    <End Role="dimensionCount" Type="Self.dimensionCount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="dimensionCount">
+        <PropertyRef Name="cahrtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__feedBack__chartI__5FB337D6">
+    <End Role="chart" Type="Self.chart" Multiplicity="0..1" />
+    <End Role="feedBack" Type="Self.feedBack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="feedBack">
+        <PropertyRef Name="chartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__intention__cahrt__4AB81AF0">
+    <End Role="chart" Type="Self.chart" Multiplicity="0..1" />
+    <End Role="intention" Type="Self.intention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="intention">
+        <PropertyRef Name="cahrtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chartDime__dimen__59063A47">
+    <End Role="chartDimension" Type="Self.chartDimension" Multiplicity="0..1" />
+    <End Role="chartDimensionCardinality" Type="Self.chartDimensionCardinality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chartDimension">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="chartDimensionCardinality">
+        <PropertyRef Name="dimensionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__dimension__dimen__5DCAEF64">
+    <End Role="chartDimension" Type="Self.chartDimension" Multiplicity="0..1" />
+    <End Role="dimensionContext" Type="Self.dimensionContext" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chartDimension">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="dimensionContext">
+        <PropertyRef Name="dimensionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__column__tableID__3D5E1FD2">
+    <End Role="table" Type="Self.table" Multiplicity="0..1" />
+    <End Role="column" Type="Self.column" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="table">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="column">
+        <PropertyRef Name="tableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__originalD__userI__2F10007B">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="originalDataFile" Type="Self.originalDataFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="originalDataFile">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__visualize__paren__33D4B598">
+    <End Role="originalDataFile" Type="Self.originalDataFile" Multiplicity="0..1" />
+    <End Role="visualizedDataFile" Type="Self.visualizedDataFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="originalDataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="visualizedDataFile">
+        <PropertyRef Name="parentFileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__feedBack__tableI__60A75C0F">
+    <End Role="table" Type="Self.table" Multiplicity="0..1" />
+    <End Role="feedBack" Type="Self.feedBack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="table">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="feedBack">
+        <PropertyRef Name="tableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__table__fileID__38996AB5">
+    <End Role="visualizedDataFile" Type="Self.visualizedDataFile" Multiplicity="0..1" />
+    <End Role="table" Type="Self.table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="visualizedDataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="table">
+        <PropertyRef Name="fileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tableDime__table__4222D4EF">
+    <End Role="table" Type="Self.table" Multiplicity="0..1" />
+    <End Role="tableDimension" Type="Self.tableDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="table">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tableDimension">
+        <PropertyRef Name="tableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="charts" EntityType="Self.chart" />
+    <EntitySet Name="chartDimensions" EntityType="Self.chartDimension" />
+    <EntitySet Name="chartDimensionCardinalities" EntityType="Self.chartDimensionCardinality" />
+    <EntitySet Name="columns" EntityType="Self.column" />
+    <EntitySet Name="dimensionContexts" EntityType="Self.dimensionContext" />
+    <EntitySet Name="dimensionCounts" EntityType="Self.dimensionCount" />
+    <EntitySet Name="intentions" EntityType="Self.intention" />
+    <EntitySet Name="originalDataFiles" EntityType="Self.originalDataFile" />
+    <EntitySet Name="tables" EntityType="Self.table" />
+    <EntitySet Name="tableDimensions" EntityType="Self.tableDimension" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="visualizedDataFiles" EntityType="Self.visualizedDataFile" />
+    <EntitySet Name="feedBacks" EntityType="Self.feedBack" />
+    <EntitySet Name="userFeedBacks" EntityType="Self.userFeedBack" />
+    <AssociationSet Name="FK__chartDime__cahrt__5441852A" Association="Self.FK__chartDime__cahrt__5441852A">
+      <End Role="chart" EntitySet="charts" />
+      <End Role="chartDimension" EntitySet="chartDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__dimension__cahrt__4F7CD00D" Association="Self.FK__dimension__cahrt__4F7CD00D">
+      <End Role="chart" EntitySet="charts" />
+      <End Role="dimensionCount" EntitySet="dimensionCounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__feedBack__chartI__5FB337D6" Association="Self.FK__feedBack__chartI__5FB337D6">
+      <End Role="chart" EntitySet="charts" />
+      <End Role="feedBack" EntitySet="feedBacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__intention__cahrt__4AB81AF0" Association="Self.FK__intention__cahrt__4AB81AF0">
+      <End Role="chart" EntitySet="charts" />
+      <End Role="intention" EntitySet="intentions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chartDime__dimen__59063A47" Association="Self.FK__chartDime__dimen__59063A47">
+      <End Role="chartDimension" EntitySet="chartDimensions" />
+      <End Role="chartDimensionCardinality" EntitySet="chartDimensionCardinalities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__dimension__dimen__5DCAEF64" Association="Self.FK__dimension__dimen__5DCAEF64">
+      <End Role="chartDimension" EntitySet="chartDimensions" />
+      <End Role="dimensionContext" EntitySet="dimensionContexts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__column__tableID__3D5E1FD2" Association="Self.FK__column__tableID__3D5E1FD2">
+      <End Role="table" EntitySet="tables" />
+      <End Role="column" EntitySet="columns" />
+    </AssociationSet>
+    <AssociationSet Name="FK__originalD__userI__2F10007B" Association="Self.FK__originalD__userI__2F10007B">
+      <End Role="user" EntitySet="users" />
+      <End Role="originalDataFile" EntitySet="originalDataFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__visualize__paren__33D4B598" Association="Self.FK__visualize__paren__33D4B598">
+      <End Role="originalDataFile" EntitySet="originalDataFiles" />
+      <End Role="visualizedDataFile" EntitySet="visualizedDataFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__feedBack__tableI__60A75C0F" Association="Self.FK__feedBack__tableI__60A75C0F">
+      <End Role="table" EntitySet="tables" />
+      <End Role="feedBack" EntitySet="feedBacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__table__fileID__38996AB5" Association="Self.FK__table__fileID__38996AB5">
+      <End Role="visualizedDataFile" EntitySet="visualizedDataFiles" />
+      <End Role="table" EntitySet="tables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tableDime__table__4222D4EF" Association="Self.FK__tableDime__table__4222D4EF">
+      <End Role="table" EntitySet="tables" />
+      <End Role="tableDimension" EntitySet="tableDimensions" />
+    </AssociationSet>
+    <FunctionImport Name="calculateCosineScore">
+      <Parameter Name="dim1_numOfDim" Mode="In" Type="Int32" />
+      <Parameter Name="intention" Mode="In" Type="String" />
+      <Parameter Name="dim1_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="dim1_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="dim1_context" Mode="In" Type="String" />
+      <Parameter Name="dim2_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="dim2_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="dim2_context" Mode="In" Type="String" />
+      <Parameter Name="dim3_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="dim3_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="dim3_context" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="calculateCosineScore2">
+      <Parameter Name="numOfDim" Mode="In" Type="Int32" />
+      <Parameter Name="intention" Mode="In" Type="String" />
+      <Parameter Name="dim1_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="dim1_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="dim1_context" Mode="In" Type="String" />
+      <Parameter Name="dim2_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="dim2_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="dim2_context" Mode="In" Type="String" />
+      <Parameter Name="dim3_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="dim3_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="dim3_context" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="calculateScoreOfPermutumVersion2">
+      <Parameter Name="result" Mode="InOut" Type="Double" />
+      <Parameter Name="intention" Mode="In" Type="String" />
+      <Parameter Name="dim1_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="dim1_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="dim1_context" Mode="In" Type="String" />
+      <Parameter Name="dim2_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="dim2_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="dim2_context" Mode="In" Type="String" />
+      <Parameter Name="dim3_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="dim3_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="dim3_context" Mode="In" Type="String" />
+      <Parameter Name="Curr_intention" Mode="In" Type="String" />
+      <Parameter Name="Curr_dim1_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="Curr_dim1_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="Curr_dim1_context" Mode="In" Type="String" />
+      <Parameter Name="Curr_dim2_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="Curr_dim2_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="Curr_dim2_context" Mode="In" Type="String" />
+      <Parameter Name="Curr_dim3_IsContinuous" Mode="In" Type="Int32" />
+      <Parameter Name="Curr_dim3_Cardinality" Mode="In" Type="Int32" />
+      <Parameter Name="Curr_dim3_context" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="readResults" ReturnType="Collection(FYPModel1.readResults_Result)" />
+  </EntityContainer>
+  <ComplexType Name="readResults_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="intention" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="dim1_IsContinuous" Nullable="true" />
+    <Property Type="Int32" Name="dim1_Cardinality" Nullable="true" />
+    <Property Type="String" Name="dim1_context" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="dim2_IsContinuous" Nullable="true" />
+    <Property Type="Int32" Name="dim2_Cardinality" Nullable="true" />
+    <Property Type="String" Name="dim2_context" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="dim3_IsContinuous" Nullable="true" />
+    <Property Type="Int32" Name="dim3_Cardinality" Nullable="true" />
+    <Property Type="String" Name="dim3_context" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="recommendation" Nullable="true" MaxLength="30" />
+    <Property Type="Double" Name="score" Nullable="true" />
+  </ComplexType>
+</Schema>
