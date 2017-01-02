@@ -15,7 +15,7 @@ namespace FYP_MVC.Models.DAO
     public partial class dimensionCount
     {
         public int ID { get; set; }
-        public Nullable<int> cahrtID { get; set; }
+        public Nullable<int> chartID { get; set; }
         public Nullable<int> count { get; set; }
     
         public virtual chart chart { get; set; }

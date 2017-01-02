@@ -12,8 +12,8 @@
     <EntitySetMapping Name="chartDimensions">
       <EntityTypeMapping TypeName="FYPModel1.chartDimension">
         <MappingFragment StoreEntitySet="chartDimension">
+          <ScalarProperty Name="chartID" ColumnName="chartID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="cahrtID" ColumnName="cahrtID" />
           <ScalarProperty Name="dimensionIndex" ColumnName="dimensionIndex" />
           <ScalarProperty Name="isContinuous" ColumnName="isContinuous" />
         </MappingFragment>
@@ -53,8 +53,8 @@
     <EntitySetMapping Name="dimensionCounts">
       <EntityTypeMapping TypeName="FYPModel1.dimensionCount">
         <MappingFragment StoreEntitySet="dimensionCount">
+          <ScalarProperty Name="chartID" ColumnName="chartID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="cahrtID" ColumnName="cahrtID" />
           <ScalarProperty Name="count" ColumnName="count" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -62,8 +62,8 @@
     <EntitySetMapping Name="intentions">
       <EntityTypeMapping TypeName="FYPModel1.intention">
         <MappingFragment StoreEntitySet="intention">
+          <ScalarProperty Name="chartID" ColumnName="chartID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="cahrtID" ColumnName="cahrtID" />
           <ScalarProperty Name="intention1" ColumnName="intention" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -124,6 +124,12 @@
     <EntitySetMapping Name="feedBacks">
       <EntityTypeMapping TypeName="FYPModel1.feedBack">
         <MappingFragment StoreEntitySet="feedBack">
+          <ScalarProperty Name="dim7_context" ColumnName="dim7_context" />
+          <ScalarProperty Name="dim7_Cardinality" ColumnName="dim7_Cardinality" />
+          <ScalarProperty Name="dim7_IsContinuous" ColumnName="dim7_IsContinuous" />
+          <ScalarProperty Name="dim6_context" ColumnName="dim6_context" />
+          <ScalarProperty Name="dim6_Cardinality" ColumnName="dim6_Cardinality" />
+          <ScalarProperty Name="dim6_IsContinuous" ColumnName="dim6_IsContinuous" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="chartID" ColumnName="chartID" />
           <ScalarProperty Name="tableID" ColumnName="tableID" />
@@ -176,28 +182,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="calculateCosineScore" FunctionName="FYPModel1.Store.calculateCosineScore" />
-    <FunctionImportMapping FunctionImportName="calculateCosineScore2" FunctionName="FYPModel1.Store.calculateCosineScore2" />
     <FunctionImportMapping FunctionImportName="calculateScoreOfPermutumVersion2" FunctionName="FYPModel1.Store.calculateScoreOfPermutumVersion2" />
-    <FunctionImportMapping FunctionImportName="readResults" FunctionName="FYPModel1.Store.readResults">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="FYPModel1.readResults_Result">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="intention" ColumnName="intention" />
-          <ScalarProperty Name="dim1_IsContinuous" ColumnName="dim1_IsContinuous" />
-          <ScalarProperty Name="dim1_Cardinality" ColumnName="dim1_Cardinality" />
-          <ScalarProperty Name="dim1_context" ColumnName="dim1_context" />
-          <ScalarProperty Name="dim2_IsContinuous" ColumnName="dim2_IsContinuous" />
-          <ScalarProperty Name="dim2_Cardinality" ColumnName="dim2_Cardinality" />
-          <ScalarProperty Name="dim2_context" ColumnName="dim2_context" />
-          <ScalarProperty Name="dim3_IsContinuous" ColumnName="dim3_IsContinuous" />
-          <ScalarProperty Name="dim3_Cardinality" ColumnName="dim3_Cardinality" />
-          <ScalarProperty Name="dim3_context" ColumnName="dim3_context" />
-          <ScalarProperty Name="recommendation" ColumnName="recommendation" />
-          <ScalarProperty Name="score" ColumnName="score" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getRecommendations" FunctionName="FYPModel1.Store.getRecommendations" />
+    <FunctionImportMapping FunctionImportName="getRecommendations_More" FunctionName="FYPModel1.Store.getRecommendations_More" />
+    <FunctionImportMapping FunctionImportName="getRecommendations_More_WithoutIntention" FunctionName="FYPModel1.Store.getRecommendations_More_WithoutIntention" />
+    <FunctionImportMapping FunctionImportName="getRecommendations_WithoutIntention" FunctionName="FYPModel1.Store.getRecommendations_WithoutIntention" />
+    <FunctionImportMapping FunctionImportName="getRecommendationFromRules" FunctionName="FYPModel1.Store.getRecommendationFromRules" />
+    <FunctionImportMapping FunctionImportName="getRecommendationFromRules_WithoutIntention_" FunctionName="FYPModel1.Store.getRecommendationFromRules_WithoutIntention_" />
   </EntityContainerMapping>
 </Mapping>

@@ -66,3 +66,4 @@ C:\Users\User\Documents\Visual Studio 2015\Projects\FYP_MVC\FYP_MVC\bin\Microsof
 C:\Users\User\Documents\Visual Studio 2015\Projects\FYP_MVC\FYP_MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\User\Documents\Visual Studio 2015\Projects\FYP_MVC\FYP_MVC\obj\Debug\FYP_MVC.dll
 C:\Users\User\Documents\Visual Studio 2015\Projects\FYP_MVC\FYP_MVC\obj\Debug\FYP_MVC.pdb
+C:\Users\User\Documents\Visual Studio 2015\Projects\FYP_MVC\FYP_MVC\obj\Debug\FYP_MVC.csprojResolveAssemblyReference.cache

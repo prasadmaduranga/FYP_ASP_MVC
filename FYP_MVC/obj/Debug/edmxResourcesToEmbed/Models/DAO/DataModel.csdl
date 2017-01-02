@@ -10,18 +10,22 @@
     <NavigationProperty Name="dimensionCounts" Relationship="Self.FK__dimension__cahrt__4F7CD00D" FromRole="chart" ToRole="dimensionCount" />
     <NavigationProperty Name="feedBacks" Relationship="Self.FK__feedBack__chartI__5FB337D6" FromRole="chart" ToRole="feedBack" />
     <NavigationProperty Name="intentions" Relationship="Self.FK__intention__cahrt__4AB81AF0" FromRole="chart" ToRole="intention" />
+    <NavigationProperty Name="chartDimensions1" Relationship="FYPModel1.FK__chartDime__cahrt__5441852A1" FromRole="chart" ToRole="chartDimension" />
+    <NavigationProperty Name="dimensionCounts1" Relationship="FYPModel1.FK__dimension__cahrt__4F7CD00D1" FromRole="chart" ToRole="dimensionCount" />
+    <NavigationProperty Name="intentions1" Relationship="FYPModel1.FK__intention__cahrt__4AB81AF01" FromRole="chart" ToRole="intention" />
   </EntityType>
   <EntityType Name="chartDimension">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cahrtID" Type="Int32" />
     <Property Name="dimensionIndex" Type="Int32" />
     <Property Name="isContinuous" Type="Int32" />
     <NavigationProperty Name="chart" Relationship="Self.FK__chartDime__cahrt__5441852A" FromRole="chartDimension" ToRole="chart" />
     <NavigationProperty Name="chartDimensionCardinalities" Relationship="Self.FK__chartDime__dimen__59063A47" FromRole="chartDimension" ToRole="chartDimensionCardinality" />
     <NavigationProperty Name="dimensionContexts" Relationship="Self.FK__dimension__dimen__5DCAEF64" FromRole="chartDimension" ToRole="dimensionContext" />
+    <Property Name="chartID" Type="Int32" />
+    <NavigationProperty Name="chart1" Relationship="FYPModel1.FK__chartDime__cahrt__5441852A1" FromRole="chartDimension" ToRole="chart" />
   </EntityType>
   <EntityType Name="chartDimensionCardinality">
     <Key>
@@ -62,6 +66,8 @@
     <Property Name="cahrtID" Type="Int32" />
     <Property Name="count" Type="Int32" />
     <NavigationProperty Name="chart" Relationship="Self.FK__dimension__cahrt__4F7CD00D" FromRole="dimensionCount" ToRole="chart" />
+    <Property Name="chartID" Type="Int32" />
+    <NavigationProperty Name="chart1" Relationship="FYPModel1.FK__dimension__cahrt__4F7CD00D1" FromRole="dimensionCount" ToRole="chart" />
   </EntityType>
   <EntityType Name="intention">
     <Key>
@@ -71,6 +77,8 @@
     <Property Name="cahrtID" Type="Int32" />
     <Property Name="intention1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="chart" Relationship="Self.FK__intention__cahrt__4AB81AF0" FromRole="intention" ToRole="chart" />
+    <Property Name="chartID" Type="Int32" />
+    <NavigationProperty Name="chart1" Relationship="FYPModel1.FK__intention__cahrt__4AB81AF01" FromRole="intention" ToRole="chart" />
   </EntityType>
   <EntityType Name="originalDataFile">
     <Key>
@@ -158,6 +166,12 @@
     <Property Name="rating" Type="Int32" />
     <NavigationProperty Name="chart" Relationship="Self.FK__feedBack__chartI__5FB337D6" FromRole="feedBack" ToRole="chart" />
     <NavigationProperty Name="table" Relationship="Self.FK__feedBack__tableI__60A75C0F" FromRole="feedBack" ToRole="table" />
+    <Property Name="dim6_IsContinuous" Type="Int32" />
+    <Property Name="dim6_Cardinality" Type="Int32" />
+    <Property Name="dim6_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dim7_IsContinuous" Type="Int32" />
+    <Property Name="dim7_Cardinality" Type="Int32" />
+    <Property Name="dim7_context" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="userFeedBack">
     <Key>
@@ -442,6 +456,39 @@
       <Parameter Name="Curr_dim3_context" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="readResults" ReturnType="Collection(FYPModel1.readResults_Result)" />
+    <AssociationSet Name="FK__chartDime__cahrt__5441852A1" Association="FYPModel1.FK__chartDime__cahrt__5441852A1">
+      <End Role="chart" EntitySet="charts" />
+      <End Role="chartDimension" EntitySet="chartDimensions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__dimension__cahrt__4F7CD00D1" Association="FYPModel1.FK__dimension__cahrt__4F7CD00D1">
+      <End Role="chart" EntitySet="charts" />
+      <End Role="dimensionCount" EntitySet="dimensionCounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__intention__cahrt__4AB81AF01" Association="FYPModel1.FK__intention__cahrt__4AB81AF01">
+      <End Role="chart" EntitySet="charts" />
+      <End Role="intention" EntitySet="intentions" />
+    </AssociationSet>
+    <FunctionImport Name="getRecommendations">
+      <Parameter Name="tableID" Mode="In" Type="Int32" />
+      <Parameter Name="intention" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getRecommendations_More">
+      <Parameter Name="tableID" Mode="In" Type="Int32" />
+      <Parameter Name="intention" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getRecommendations_More_WithoutIntention">
+      <Parameter Name="tableID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getRecommendations_WithoutIntention">
+      <Parameter Name="tableID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getRecommendationFromRules">
+      <Parameter Name="tableID" Mode="In" Type="Int32" />
+      <Parameter Name="intention" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="getRecommendationFromRules_WithoutIntention_">
+      <Parameter Name="tableID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="readResults_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
@@ -459,4 +506,40 @@
     <Property Type="String" Name="recommendation" Nullable="true" MaxLength="30" />
     <Property Type="Double" Name="score" Nullable="true" />
   </ComplexType>
+  <Association Name="FK__chartDime__cahrt__5441852A1">
+    <End Type="FYPModel1.chart" Role="chart" Multiplicity="0..1" />
+    <End Type="FYPModel1.chartDimension" Role="chartDimension" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="chartDimension">
+        <PropertyRef Name="chartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__dimension__cahrt__4F7CD00D1">
+    <End Type="FYPModel1.chart" Role="chart" Multiplicity="0..1" />
+    <End Type="FYPModel1.dimensionCount" Role="dimensionCount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="dimensionCount">
+        <PropertyRef Name="chartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__intention__cahrt__4AB81AF01">
+    <End Type="FYPModel1.chart" Role="chart" Multiplicity="0..1" />
+    <End Type="FYPModel1.intention" Role="intention" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chart">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="intention">
+        <PropertyRef Name="chartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
